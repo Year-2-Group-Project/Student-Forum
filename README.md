@@ -21,3 +21,6 @@ Push changes to new branch
 If merges found, then review and make changes
 Merge branches
 Delete new branch created
+
+**Committing the front-end to github:**
+After making changes to the front end, type in the termina:  **expo build:web**
