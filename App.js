@@ -59,7 +59,7 @@ export default function App() {
           component={LoginPage}
           options={{
             headerTitleStyle: { alignSelf: "center" },
-            title: "Log In To Your Account",
+            title: "Log In To Your Account chariton",
           }}
         />
         <Stack.Screen
@@ -74,4 +74,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-// Bilal is gay 
