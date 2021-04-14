@@ -24,3 +24,6 @@ Delete new branch created
 
 **Committing the front-end to github:**
 After making changes to the front end, type in the terminal: **expo build:web**
+
+Then to run it locally:
+**expo start -w**
