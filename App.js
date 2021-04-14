@@ -14,15 +14,13 @@ function LoginPage({ navigation }) {
 
   const authenticate = () => {
     axios
-      .post(
-        "https://group-project-sql.herokuapp.com/create",
-        JSON.stringify({
-          username: username,
-          password: password,
-        })
-      )
-      .then((response) => {
-        console.log("Connected to sql backend");
+      .post("https://group-project-sql.herokuapp.com/create", {
+        username: username,
+        password: password,
+        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+      })
+      .then(() => {
+        console.log("success");
       })
       .catch((err) => {
         console.log(err);
