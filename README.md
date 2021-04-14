@@ -23,4 +23,4 @@ Merge branches
 Delete new branch created
 
 **Committing the front-end to github:**
-After making changes to the front end, type in the termina:  **expo build:web**
+After making changes to the front end, type in the terminal: **expo build:web**
