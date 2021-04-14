@@ -49,16 +49,20 @@ function LoginPage({ navigation }) {
       <TextInput
         style={styles.input}
         placeholder="Username"
-        onChangeText={(text) => setUsername(text)}
+        onChange={(event) => {
+          setUsername(event.target.value);
+        }}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
         secureTextEntry={true}
-        onChangeText={(text) => setPassword(text)}
+        onChange={(event) => {
+          setPassword(event.target.value);
+        }}
       />
 
-      <Button title="Log In" onPress={() => authenticate()} />
+      <Button title="Log In" onClick={authenticate} />
       <Button title="Signup" onPress={() => navigation.navigate("Signup")} />
       <StatusBar style="auto" />
     </View>
