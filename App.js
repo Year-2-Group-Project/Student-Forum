@@ -61,7 +61,7 @@ export default function App() {
           component={LoginPage}
           options={{
             headerTitleStyle: { alignSelf: "center" },
-            title: "netlify login github direct",
+            title: "Log In To Your Account",
           }}
         />
         <Stack.Screen
