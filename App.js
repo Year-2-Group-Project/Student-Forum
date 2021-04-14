@@ -30,6 +30,7 @@ function LoginPage({ navigation }) {
   // };
 
   const authenticate = () => {
+    console.log("button pressed");
     axios
       .post("https://group-project-sql.herokuapp.com/create", {
         username: username,
@@ -42,6 +43,8 @@ function LoginPage({ navigation }) {
       .catch((err) => {
         console.log(err);
       });
+    console.log(username);
+    console.log(password);
   };
 
   return (
@@ -66,6 +69,28 @@ function LoginPage({ navigation }) {
       <Button title="Signup" onPress={() => navigation.navigate("Signup")} />
       <StatusBar style="auto" />
     </View>
+  );
+
+  return (
+    <div className="App">
+      <div className="information">
+        <label>Name:</label>
+        <input
+          type="text"
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+        />
+        <label>Age:</label>
+        <input
+          type="text"
+          onChange={(event) => {
+            setAge(event.target.value);
+          }}
+        />
+        <button onClick={addStudent}> Add </button>
+      </div>
+    </div>
   );
 }
 
