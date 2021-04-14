@@ -4,13 +4,13 @@ import { useState } from "react";
 import Axios from "axios";
 
 export default function App() {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const addStudent = () => {
     Axios.post("https://group-project-sql.herokuapp.com/create", {
-      name: name,
-      age: age,
+      username: username,
+      password: password,
       headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
     })
       .then(() => {
@@ -28,14 +28,14 @@ export default function App() {
         <input
           type="text"
           onChange={(event) => {
-            setName(event.target.value);
+            setUsername(event.target.value);
           }}
         />
         <label>Age:</label>
         <input
           type="text"
           onChange={(event) => {
-            setAge(event.target.value);
+            setPassword(event.target.value);
           }}
         />
         <button onClick={addStudent}> Add </button>
