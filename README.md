@@ -24,7 +24,7 @@ Delete new branch created
 
 **Committing the front-end to github so that it updates the netlify website:**
 
-After making changes to the front end, type in the terminal: **expo build:web**
+After making changes to the front end, type in the terminal: **expo build:web** and then commit to github
 
 Then to run it locally:
 **expo start -w**
