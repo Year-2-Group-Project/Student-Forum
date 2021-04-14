@@ -65,7 +65,7 @@ function LoginPage({ navigation }) {
         }}
       />
 
-      <Button title="Log In" onClick={authenticate} />
+      <Button title="Log In" onPress={() => authenticate} />
       <Button title="Signup" onPress={() => navigation.navigate("Signup")} />
       <StatusBar style="auto" />
     </View>
