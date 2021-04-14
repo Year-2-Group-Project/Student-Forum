@@ -22,7 +22,8 @@ If merges found, then review and make changes
 Merge branches
 Delete new branch created
 
-**Committing the front-end to github:**
+**Committing the front-end to github so that it updates the netlify website:**
+
 After making changes to the front end, type in the terminal: **expo build:web**
 
 Then to run it locally:
