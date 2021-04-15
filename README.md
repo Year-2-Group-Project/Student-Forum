@@ -2,6 +2,8 @@
 Year 2 Group Project
 University of Liverpool COMP208 Group Software Project
 
+React Native Docs: **https://reactjs.org/docs/getting-started.html**
+
 Clone project: **git clone https://github.com/Year-2-Group-Project/Student-Forum.git**
 
 Then install package.json dependancies: **npm install**
