@@ -2,13 +2,13 @@
 Year 2 Group Project
 University of Liverpool COMP208 Group Software Project
 
-Clone project: git clone https://github.com/Year-2-Group-Project/Student-Forum.git
+Clone project: **git clone https://github.com/Year-2-Group-Project/Student-Forum.git**
 
-Then install package.json dependancies: npm install
+Then install package.json dependancies: **npm install**
 
-To start app on mac: expo start
+To start app on mac: **expo start**
 
-To start app on windows: npm start
+To start app on windows: **npm start**
 
 NOTE: Whenever someone installs a new package, all you have to do is run npm install so that you can update the packages that you need for the app to run.
 
