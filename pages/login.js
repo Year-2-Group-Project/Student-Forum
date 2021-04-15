@@ -1,14 +1,11 @@
 import * as React from "react";
 import { StatusBar } from "expo-status-bar";
 import { TextInput, View, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import SignupPage from "../Signup";
 import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 
-function LoginPage({ navigation }) {
+export default function LoginPage({ navigation }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,7 +17,7 @@ function LoginPage({ navigation }) {
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
       .then(() => {
-        console.log("success");
+        console.log("Log in Successful");
       })
       .catch((err) => {
         console.log(err);
@@ -45,32 +42,5 @@ function LoginPage({ navigation }) {
       <Button title="Signup" onPress={() => navigation.navigate("Signup")} />
       <StatusBar style="auto" />
     </View>
-  );
-}
-
-const Stack = createStackNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen
-          name="Login"
-          component={LoginPage}
-          options={{
-            headerTitleStyle: { alignSelf: "center" },
-            title: "Log In To Your Account chariton",
-          }}
-        />
-        <Stack.Screen
-          name="Signup"
-          component={SignupPage}
-          options={{
-            headerTitleStyle: { alignSelf: "center" },
-            title: "Sign Up",
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
   );
 }
