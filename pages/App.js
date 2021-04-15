@@ -3,8 +3,8 @@ import { StatusBar } from "expo-status-bar";
 import { TextInput, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import SignupPage from "./Signup";
-import styles from "./style";
+import SignupPage from "../Signup";
+import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 
