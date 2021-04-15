@@ -1,0 +1,55 @@
+Sign-up page:
+1.	User Interface
+2.	UOL email verification
+3.	Database creation
+4.	Password Hash – Security
+5.	Insert to Database
+
+Log-in page:
+1.	User Interface
+2.	Validation for email and password
+
+Home page:
+1.	User Interface (Displaying posts)
+2.	Search
+3.	Sort
+4.	User Profile Section (Button) – e.g. for logging out
+
+Subforum:
+1.	Join, Leave
+2.	Create, Delete posts
+3.	Like, Dislike, Report posts
+
+Posts:
+1.	Edit post
+2.	Create, Delete comments (replies to post)
+3.	Like, Dislike, Report comments
+4.	Edit comment
+
+Comments:
+1.	Like, Dislike, Report comment
+
+User Profile Section:
+1.	Create, Delete subforums
+2.	Logout from account
+3.	Edit Account – Talk with group
+4.	View posts and comments
+5.	Option to delete account
+
+Roles:
+1.	Student:
+a.	Everything above mentioned
+
+2.	President
+a.	Accept, Reject, Kick student from subforum
+b.	Appoint role to student
+c.	Delete any post
+
+3.	Moderator
+a.	Delete any post
+
+4.	Administrator
+a.	Accept, Reject, Kick student from subforum
+b.	Appoint role to student
+c.	Delete any post
+d.	View, Add, Delete Records
