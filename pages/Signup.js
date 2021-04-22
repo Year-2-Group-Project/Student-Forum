@@ -31,11 +31,18 @@ export default function SignupPage() {
       })
       .then(() => {
         console.log("Sign up successful");
-        Alert.alert("Sign up successful");
       })
       .catch((err) => {
         console.log(err);
       });
+    Alert.alert("Alert Title", "My Alert Msg", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") },
+    ]);
   };
 
   return (
