@@ -1,14 +1,13 @@
 Sign-up page:
-1.	User Interface - Base
+1.	User Interface - Base - Done
 2.	UOL email verification - Base
-3.	Database creation - Base
-4.	Password Hash – Security - Base
-5.	Insert to Database - Base
-6.      One user per email - Base
+3.	Database creation - Base - Done
+4.	Password Hash – Security - Base - Done
+5.	Insert to Database - Base - Done
 
 Log-in page:
 1.	User Interface - Base
-2.	Validation for email and password - Base
+2.	Validation for email and password - Base (pregmatch)
 
 Home page:
 1.	User Interface (Displaying posts) - Base
