@@ -29,7 +29,7 @@ export default function SignupPage() {
       })
       .then(() => {
         console.log("Sign up successful");
-        navigation.navigate("Login");
+        navigation.navigate("Home");
       })
       .catch((err) => {
         console.log(err);
