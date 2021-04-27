@@ -5,34 +5,35 @@ import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 
+var saved = "";
+
 export default function LoginPage({ navigation }) {
   const [username, setUsername] = useState("");
   var [password, setPassword] = useState("");
 
   const authenticate = () => {
     const bcrypt = require("bcryptjs");
-    var salt = bcrypt.genSaltSync(10);
-    var hashedPW = bcrypt.hashSync(password, salt);
-
-    console.log(username);
-    console.log(password);
-    console.log(hashedPW);
-
+    
     axios
     .post("https://group-project-sql.herokuapp.com/fetch", {
       username: username,
       headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
     })
     .then((res) => {
-      console.log(res.data);
+      console.log(res.data[0]);
+      saved = (res.data[0]["Password"]);
+      console.log(saved);
+      if (bcrypt.compareSync(password, saved)){
+        navigation.navigate("Home");
+      }else{
+        console.log("Password/Username is incorrect")
+      }
     })
     .catch((err) => {
       console.log(err);
     });
 };
-
       
-
 
   return (
     <View style={styles.container}>
