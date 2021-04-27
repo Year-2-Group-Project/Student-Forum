@@ -4,21 +4,18 @@ import { TextInput, View, Button } from "react-native";
 import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
+import { Card } from "react-native-elements";
 
 export default function SubforumPage() {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [posts, setPosts] = useState([]);
 
-  const authenticate = () => {
+  const showPosts = () => {
     axios
-      .get("https://group-project-sql.herokuapp.com/subforum", {
+      .get("https://group-project-sql.herokuapp.com/posts", {
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
       .then((res) => {
-        console.log(res.data);
+        setPosts(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -27,20 +24,16 @@ export default function SubforumPage() {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        onChangeText={(text) => setUsername(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry={true}
-        onChangeText={(text) => setPassword(text)}
-      />
-
-      <Button title="Log In" onPress={authenticate} />
-      <Button title="Signup" onPress={() => navigation.navigate("Signup")} />
+      {posts.map((post) => (
+        <Card>
+          <Card.Title>{post["Post_title"]}</Card.Title>
+          <Card.Divider />
+          <Card.Title>{post["Post_content"]}</Card.Title>
+          <Card.Divider />
+          <Card.Title>{post["Post_date"]}</Card.Title>
+        </Card>
+      ))}
+      <Button title="Log In" onPress={showPosts} />
       <StatusBar style="auto" />
     </View>
   );

@@ -1,23 +1,21 @@
 import * as React from "react";
 import { StatusBar } from "expo-status-bar";
-import { TextInput, View, Button } from "react-native";
+import { TextInput, View, Button, TouchableOpacity } from "react-native";
 import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
+import { Card } from "react-native-elements";
 
 export default function HomePage({ navigation }) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [subforums, setSubforums] = useState([]);
 
-  const createPost = () => {
+  const showSubforums = () => {
     axios
-      .post("https://group-project-sql.herokuapp.com/submit", {
-        title: title,
-        content: content,
+      .get("https://group-project-sql.herokuapp.com/subforums", {
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
-      .then(() => {
-        console.log("Submit post successful");
+      .then((res) => {
+        setSubforums(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -26,21 +24,16 @@ export default function HomePage({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Title"
-        onChangeText={(text) => setTitle(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Post content"
-        onChangeText={(text) => setContent(text)}
-      />
-      <Button title="Create Post" onPress={createPost} />
-      <Button
-        title="Create SubForum"
-        onPress={() => navigation.navigate("CreateSubforum")}
-      />
+      {subforums.map((subforum) => (
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <Card>
+            <Card.Title>{subforum["Sub_title"]}</Card.Title>
+            <Card.Divider />
+            <Card.Title>{subforum["Sub_description"]}</Card.Title>
+          </Card>
+        </TouchableOpacity>
+      ))}
+      <Button title="Log In" onPress={showSubforums} />
       <StatusBar style="auto" />
     </View>
   );
