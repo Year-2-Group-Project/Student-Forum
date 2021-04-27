@@ -1,11 +1,11 @@
 import * as React from "react";
 import { StatusBar } from "expo-status-bar";
-import { TextInput, View, Button, Alert } from "react-native";
+import { TextInput, View, Button } from "react-native";
 import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 
-export default function SignupPage() {
+export default function SubforumPage() {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -14,16 +14,11 @@ export default function SignupPage() {
 
   const authenticate = () => {
     axios
-      .post("https://group-project-sql.herokuapp.com/signup", {
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
-        username: username,
-        password: password,
+      .get("https://group-project-sql.herokuapp.com/subforum", {
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
-      .then(() => {
-        console.log("Sign up successful");
+      .then((res) => {
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -32,21 +27,6 @@ export default function SignupPage() {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="First Name"
-        onChangeText={(text) => setFirstname(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Last Name"
-        onChangeText={(text) => setLastname(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        onChangeText={(text) => setEmail(text)}
-      />
       <TextInput
         style={styles.input}
         placeholder="Username"
@@ -58,7 +38,9 @@ export default function SignupPage() {
         secureTextEntry={true}
         onChangeText={(text) => setPassword(text)}
       />
-      <Button title="CREATE ACCOUNT" onPress={authenticate} />
+
+      <Button title="Log In" onPress={authenticate} />
+      <Button title="Signup" onPress={() => navigation.navigate("Signup")} />
       <StatusBar style="auto" />
     </View>
   );
