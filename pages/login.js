@@ -10,6 +10,7 @@ var saved = "";
 export default function LoginPage({ navigation }) {
   const [username, setUsername] = useState("");
   var [password, setPassword] = useState("");
+  var fetched = "";
 
   const authenticate = () => {
     const bcrypt = require("bcryptjs");
@@ -33,7 +34,6 @@ export default function LoginPage({ navigation }) {
       console.log(err);
     });
 };
-      
 
   return (
     <View style={styles.container}>
