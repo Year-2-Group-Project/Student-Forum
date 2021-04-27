@@ -5,7 +5,7 @@ import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 
-export default function SignupPage() {
+export default function SignupPage({ navigation }) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
