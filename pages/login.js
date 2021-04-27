@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function LoginPage({ navigation }) {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  var [password, setPassword] = useState("");
 
   const authenticate = () => {
     axios

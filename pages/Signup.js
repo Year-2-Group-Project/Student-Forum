@@ -13,13 +13,20 @@ export default function SignupPage() {
   const [password, setPassword] = useState("");
 
   const authenticate = () => {
+    // Hashing password
+    const bcrypt = require("bcryptjs");
+    var salt = bcrypt.genSaltSync(10);
+    var hashedPW = bcrypt.hashSync(password, salt);
+
+    // console.log(bcrypt.compareSync("ducks", hashedPW));
+
     axios
       .post("https://group-project-sql.herokuapp.com/signup", {
         firstname: firstname,
         lastname: lastname,
         email: email,
         username: username,
-        password: password,
+        password: hashedPW,
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
       .then(() => {
