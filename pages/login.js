@@ -10,19 +10,29 @@ export default function LoginPage({ navigation }) {
   var [password, setPassword] = useState("");
 
   const authenticate = () => {
+    const bcrypt = require("bcryptjs");
+    var salt = bcrypt.genSaltSync(10);
+    var hashedPW = bcrypt.hashSync(password, salt);
+
+    console.log(username);
+    console.log(password);
+    console.log(hashedPW);
+
     axios
-      .post("https://group-project-sql.herokuapp.com/create", {
-        username: username,
-        password: password,
-        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
-      })
-      .then(() => {
-        console.log("Log in Successful");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    .post("https://group-project-sql.herokuapp.com/fetch", {
+      username: username,
+      headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+      
+
 
   return (
     <View style={styles.container}>
