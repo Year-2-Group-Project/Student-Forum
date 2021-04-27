@@ -8,20 +8,31 @@ import { useState } from "react";
 export default function LoginPage({ navigation }) {
   const [username, setUsername] = useState("");
   var [password, setPassword] = useState("");
+  var fetched = "";
 
   const authenticate = () => {
+    // Hashing password
+    const bcrypt = require("bcryptjs");
+    var salt = bcrypt.genSaltSync(10);
+    var hashedPW = bcrypt.hashSync(password, salt);
+
+    console.log(username);
+    console.log(password);
+    console.log(hashedPW);
+
     axios
-      .post("https://group-project-sql.herokuapp.com/create", {
+      .get("https://group-project-sql.herokuapp.com/fetch", {
         username: username,
-        password: password,
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
-      })
+      }).then((response) => {fetched = response.data})
       .then(() => {
-        console.log("Log in Successful");
+        console.log("Password fetched: " + fetched);
       })
       .catch((err) => {
         console.log(err);
       });
+
+    console.log(bcrypt.compareSync(fetched, hashedPW))
   };
 
   return (
