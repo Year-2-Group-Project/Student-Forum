@@ -18,8 +18,6 @@ export default function SignupPage() {
     var salt = bcrypt.genSaltSync(10);
     var hashedPW = bcrypt.hashSync(password, salt);
 
-    // console.log(bcrypt.compareSync("ducks", hashedPW));
-
     axios
       .post("https://group-project-sql.herokuapp.com/signup", {
         firstname: firstname,
