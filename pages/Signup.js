@@ -29,6 +29,7 @@ export default function SignupPage() {
       })
       .then(() => {
         console.log("Sign up successful");
+        navigation.navigate("Login");
       })
       .catch((err) => {
         console.log(err);
