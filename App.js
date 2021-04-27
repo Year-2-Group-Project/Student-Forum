@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SignupPage from "./pages/signup";
 import LoginPage from "./pages/login";
 import HomePage from "./pages/home";
+import SubforumPage from "./pages/subforum";
 import createSubforumPage from "./pages/createSubforum";
 
 const Stack = createStackNavigator();
@@ -42,6 +43,14 @@ export default function App() {
           options={{
             headerTitleStyle: { alignSelf: "center" },
             title: "Create a Subforum",
+          }}
+        />
+        <Stack.Screen
+          name="Subforum"
+          component={SubforumPage}
+          options={{
+            headerTitleStyle: { alignSelf: "center" },
+            title: "Subforum",
           }}
         />
       </Stack.Navigator>

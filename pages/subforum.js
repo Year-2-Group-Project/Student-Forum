@@ -5,35 +5,25 @@ import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 
-export default function LoginPage({ navigation }) {
+export default function SubforumPage() {
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  var [password, setPassword] = useState("");
-  var fetched = "";
+  const [password, setPassword] = useState("");
 
   const authenticate = () => {
-    const bcrypt = require("bcryptjs");
-    var salt = bcrypt.genSaltSync(10);
-    var hashedPW = bcrypt.hashSync(password, salt);
-
-    console.log(username);
-    console.log(password);
-    console.log(hashedPW);
-
     axios
-    .post("https://group-project-sql.herokuapp.com/fetch", {
-      username: username,
-      headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
-    })
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
-      
-
+      .get("https://group-project-sql.herokuapp.com/subforum", {
+        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <View style={styles.container}>
