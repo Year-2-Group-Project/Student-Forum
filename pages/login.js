@@ -32,9 +32,6 @@ export default function LoginPage({ navigation }) {
     });
 };
 
-      
-
-
   return (
     <View style={styles.container}>
       <TextInput
