@@ -5,7 +5,7 @@ import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 
-export default function SignupPage() {
+export default function SignupPage({ navigation }) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -18,8 +18,6 @@ export default function SignupPage() {
     var salt = bcrypt.genSaltSync(10);
     var hashedPW = bcrypt.hashSync(password, salt);
 
-    // console.log(bcrypt.compareSync("ducks", hashedPW));
-
     axios
       .post("https://group-project-sql.herokuapp.com/signup", {
         firstname: firstname,
@@ -31,6 +29,7 @@ export default function SignupPage() {
       })
       .then(() => {
         console.log("Sign up successful");
+        navigation.navigate("Home");
       })
       .catch((err) => {
         console.log(err);
