@@ -5,16 +5,19 @@ import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 import { Card } from "react-native-elements";
+import { subforumID } from "./home";
 
 export default function SubforumPage() {
   const [posts, setPosts] = useState([]);
 
   const showPosts = () => {
     axios
-      .get("https://group-project-sql.herokuapp.com/posts", {
+      .post("https://group-project-sql.herokuapp.com/posts", {
+        subID: subforumID,
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
       .then((res) => {
+        // res.data should be all posts from specific subforum
         setPosts(res.data);
       })
       .catch((err) => {

@@ -1,10 +1,13 @@
 import * as React from "react";
 import { StatusBar } from "expo-status-bar";
-import { TextInput, View, Button, TouchableOpacity } from "react-native";
+import { View, Button, TouchableOpacity } from "react-native";
 import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 import { Card } from "react-native-elements";
+
+var subforumID;
+var subforumTitle;
 
 export default function HomePage({ navigation }) {
   const [subforums, setSubforums] = useState([]);
@@ -22,10 +25,18 @@ export default function HomePage({ navigation }) {
       });
   };
 
+  function subOnPress(sub) {
+    subforumTitle = sub["Sub_title"];
+    subforumID = sub["Sub_ID"];
+    console.log(subforumID);
+    console.log(subforumTitle);
+    navigation.navigate("Subforum");
+  }
+
   return (
     <View style={styles.container}>
       {subforums.map((subforum) => (
-        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity onPress={() => subOnPress(subforum)}>
           <Card>
             <Card.Title>{subforum["Sub_title"]}</Card.Title>
             <Card.Divider />
@@ -38,3 +49,4 @@ export default function HomePage({ navigation }) {
     </View>
   );
 }
+export { subforumID };

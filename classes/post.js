@@ -1,23 +1,25 @@
 import React, { Component } from "react";
+import { Card } from "react-native-elements";
 import { render } from "react-dom";
 import { Text } from "react-native";
 
 class Post extends Component {
-    let 
-    let title;
-    let description;
-    let isPrivate;
-    render(){
-        return{
-            
+    render() {
+        return {
+            {posts.map((post) => (
+                <Card>
+                  <Card.Title>{post["Post_title"]}</Card.Title>
+                  <Card.Divider />
+                  <Card.Title>{post["Post_content"]}</Card.Title>
+                  <Card.Divider />
+                  <Card.Title>{post["Post_date"]}</Card.Title>
+                </Card>
+              ))}
         }
     }
 }
 
 // create get for title
-function getTitle() {
-
-}
 
 // create get for description
 
