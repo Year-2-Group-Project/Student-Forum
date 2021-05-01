@@ -50,10 +50,6 @@ export default function SubforumPage({ navigation }) {
       });
   };
 
-  React.useEffec;
-
-  const commentOnPress = () => {};
-
   return (
     <View style={styles.cardContainer}>
       <View style={{ flexDirection: "row" }}>

@@ -32,7 +32,7 @@ export default function LoginPage({ navigation }) {
 
   React.useEffect(() => {
     axios.get("http://localhost:19007/login").then((res) => {
-      console.log(res);
+      console.log(res.data["user"]);
     });
   }, []);
 
