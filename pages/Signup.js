@@ -12,6 +12,9 @@ export default function SignupPage({ navigation }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  axios.defaults.withCredentials = true;
+
+
   const authenticate = () => {
     // Hashing password
     const bcrypt = require("bcryptjs");
@@ -19,7 +22,7 @@ export default function SignupPage({ navigation }) {
     var hashedPW = bcrypt.hashSync(password, salt);
 
     axios
-      .post("https://group-project-sql.herokuapp.com/signup", {
+      .post("http://localhost:19007/signup", {
         firstname: firstname,
         lastname: lastname,
         email: email,

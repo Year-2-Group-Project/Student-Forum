@@ -31,9 +31,34 @@ export default function SubforumPage({ navigation }) {
   const commentOnPress = () => {
     navigation.navigate("Thread");
   };
+  var userID = 1;
+
+  const join = () => {
+    console.log(subforumID);
+    console.log(userID);
+    axios
+      .post("http://localhost:19007/join", {
+        userID: userID,
+        subforumID: subforumID,
+        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+      })
+      .then(() => {
+        console.log("Submit post successful");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  React.useEffec;
+
+  const commentOnPress = () => {};
 
   return (
     <View style={styles.cardContainer}>
+      <View style={{ flexDirection: "row" }}>
+        <Button title="Join" onPress={join} />
+      </View>
       <View style={styles.cardPosition}>
         <View style={styles.card}>
           <Card>

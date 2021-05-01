@@ -7,13 +7,15 @@ import HomePage from "./pages/home";
 import SubforumPage from "./pages/subforum";
 import createSubforumPage from "./pages/createSubforum";
 import ThreadPage from "./pages/thread";
+import userProfile from "./pages/userProfile";
+import { TextInput, View, Button } from "react-native";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Subforum">
+      <Stack.Navigator initialRouteName="Signup">
         <Stack.Screen
           name="Login"
           component={LoginPage}
@@ -60,6 +62,14 @@ export default function App() {
           options={{
             headerTitleStyle: { alignSelf: "center" },
             title: "Thread",
+          }}
+        />
+        <Stack.Screen
+          name="userProfile"
+          component={userProfile}
+          options={{
+            headerTitleStyle: { alignSelf: "center" },
+            title: "userProfile",
           }}
         />
       </Stack.Navigator>
