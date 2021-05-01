@@ -5,6 +5,7 @@ import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 import { Card } from "react-native-elements";
+// import { cookieUsername } from "./login.js";
 
 var subforumID;
 var subforumTitle;
