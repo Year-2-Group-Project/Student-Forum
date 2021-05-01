@@ -5,34 +5,36 @@ import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 
-var saved = "";
-
 export default function LoginPage({ navigation }) {
-  const [username, setUsername] = useState("");
+  var [username, setUsername] = useState("");
   var [password, setPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState("");
+
+  axios.defaults.withCredentials = true;
 
   const authenticate = () => {
-    const bcrypt = require("bcryptjs");
-    
     axios
-    .post("https://group-project-sql.herokuapp.com/fetch", {
+    .post("https://group-project-sql.herokuapp.com/login", {
       username: username,
-      headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
-    })
-    .then((res) => {
-      console.log(res.data[0]);
-      saved = (res.data[0]["Password"]);
-      console.log(saved);
-      if (bcrypt.compareSync(password, saved)){
-        navigation.navigate("Home");
-      }else{
-        console.log("Password/Username is incorrect")
+      password: password,
+    }).then((res) => {
+      if (res.data.message) {
+        setLoginStatus(res.data.message);
+        console.log(res.data.message);
+      } else {
+        // Logged in as loginStatus
+        setLoginStatus(res.data[0].Username);
+        console.log(res.data[0].Username);
       }
-    })
-    .catch((err) => {
-      console.log(err);
     });
-};
+  };
+
+  React.useEffect(() => {
+    axios
+    .get("https://group-project-sql.herokuapp.com/login").then((res) => {
+      console.log(res);
+    })
+  }, [])
 
   return (
     <View style={styles.container}>
