@@ -14,7 +14,7 @@ export default function HomePage({ navigation }) {
 
   // const showSubforums = () => {
   axios
-    .get("https://localhost:19007/subforums", {
+    .get("http://localhost:19007/subforums", {
       headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
     })
     .then((res) => {

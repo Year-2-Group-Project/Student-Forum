@@ -12,7 +12,7 @@ export default function createSubforumPage() {
 
   const executeCreate = () => {
     axios
-      .post("https://localhost:19007/subforum/create", {
+      .post("http://localhost:19007/subforum/create", {
         title: title,
         description: description,
         isPrivate: isPrivate,

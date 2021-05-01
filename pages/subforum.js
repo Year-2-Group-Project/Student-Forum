@@ -34,7 +34,7 @@ export default function SubforumPage() {
     console.log(subforumID)
     console.log(userID)
     axios
-      .post("https://localhost:19007/join", {
+      .post("http://localhost:19007/join", {
         userID: userID,
         subforumID: subforumID,
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
