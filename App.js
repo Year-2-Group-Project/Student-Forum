@@ -6,6 +6,7 @@ import LoginPage from "./pages/login";
 import HomePage from "./pages/home";
 import SubforumPage from "./pages/subforum";
 import createSubforumPage from "./pages/createSubforum";
+import ThreadPage from "./pages/thread";
 
 const Stack = createStackNavigator();
 
@@ -51,6 +52,14 @@ export default function App() {
           options={{
             headerTitleStyle: { alignSelf: "center" },
             title: "Subforum",
+          }}
+        />
+        <Stack.Screen
+          name="Thread"
+          component={ThreadPage}
+          options={{
+            headerTitleStyle: { alignSelf: "center" },
+            title: "Thread",
           }}
         />
       </Stack.Navigator>

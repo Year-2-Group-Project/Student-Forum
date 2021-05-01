@@ -20,10 +20,7 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   card: {
-    width: width <= 400 ? "80%" : "80%",
-    aspectRatio: 1,
-    // flexShrink: 1
-    // width: "80%",
+    width: "40%",
   },
   cardPosition: {
     alignItems: "center",

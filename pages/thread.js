@@ -10,23 +10,22 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
 
-const { width, height } = Dimensions.get("window");
+export default function ThreadPage({ navigation }) {
+  const [post, setPost] = useState([]);
+  const [comments, setComments] = useState([]);
 
-export default function SubforumPage({ navigation }) {
-  const [posts, setPosts] = useState([]);
-
-  // axios
-  //   .post("https://group-project-sql.herokuapp.com/posts", {
-  //     subforumID: subforumID,
-  //     headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
-  //   })
-  //   .then((res) => {
-  //     // res.data should be all posts from specific subforum
-  //     setPosts(res.data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  axios
+    .post("https://group-project-sql.herokuapp.com/getThreadPost", {
+      subforumID: subforumID,
+      headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+    })
+    .then((res) => {
+      // res.data should be all posts from specific subforum
+      setPost(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   const commentOnPress = () => {
     navigation.navigate("Thread");
