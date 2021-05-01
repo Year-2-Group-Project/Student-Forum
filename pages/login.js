@@ -14,7 +14,7 @@ export default function LoginPage({ navigation }) {
 
   const authenticate = () => {
     axios
-      .post("https://group-project-sql.herokuapp.com/login", {
+      .post("https://localhost:19007/login", {
         username: username,
         password: password,
       })
@@ -31,7 +31,7 @@ export default function LoginPage({ navigation }) {
   };
 
   React.useEffect(() => {
-    axios.get("https://group-project-sql.herokuapp.com/login").then((res) => {
+    axios.get("https://localhost:19007/login").then((res) => {
       console.log(res);
     });
   }, []);

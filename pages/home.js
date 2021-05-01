@@ -14,7 +14,7 @@ export default function HomePage({ navigation }) {
 
   // const showSubforums = () => {
   axios
-    .get("https://group-project-sql.herokuapp.com/subforums", {
+    .get("https://localhost:19007/subforums", {
       headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
     })
     .then((res) => {
