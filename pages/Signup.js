@@ -14,7 +14,6 @@ export default function SignupPage({ navigation }) {
 
   axios.defaults.withCredentials = true;
 
-
   const authenticate = () => {
     // Hashing password
     const bcrypt = require("bcryptjs");
@@ -32,7 +31,7 @@ export default function SignupPage({ navigation }) {
       })
       .then(() => {
         console.log("Sign up successful");
-        navigation.navigate("Home");
+        // navigation.navigate("Home");
       })
       .catch((err) => {
         console.log(err);
