@@ -14,27 +14,27 @@ export default function LoginPage({ navigation }) {
 
   const authenticate = () => {
     axios
-    .post("https://group-project-sql.herokuapp.com/login", {
-      username: username,
-      password: password,
-    }).then((res) => {
-      if (res.data.message) {
-        setLoginStatus(res.data.message);
-        console.log(res.data.message);
-      } else {
-        // Logged in as loginStatus
-        setLoginStatus(res.data[0].Username);
-        console.log(res.data[0].Username);
-      }
-    });
+      .post("https://group-project-sql.herokuapp.com/login", {
+        username: username,
+        password: password,
+      })
+      .then((res) => {
+        if (res.data.message) {
+          setLoginStatus(res.data.message);
+          console.log(res.data.message);
+        } else {
+          // Logged in as loginStatus
+          setLoginStatus(res.data[0].Username);
+          console.log(res.data[0].Username);
+        }
+      });
   };
 
   React.useEffect(() => {
-    axios
-    .get("https://group-project-sql.herokuapp.com/login").then((res) => {
+    axios.get("https://group-project-sql.herokuapp.com/login").then((res) => {
       console.log(res);
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <View style={styles.container}>

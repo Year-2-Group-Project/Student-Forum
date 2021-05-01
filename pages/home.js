@@ -12,18 +12,18 @@ var subforumTitle;
 export default function HomePage({ navigation }) {
   const [subforums, setSubforums] = useState([]);
 
-  const showSubforums = () => {
-    axios
-      .get("https://group-project-sql.herokuapp.com/subforums", {
-        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
-      })
-      .then((res) => {
-        setSubforums(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const showSubforums = () => {
+  axios
+    .get("https://group-project-sql.herokuapp.com/subforums", {
+      headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+    })
+    .then((res) => {
+      setSubforums(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // };
 
   function subOnPress(sub) {
     subforumTitle = sub["Sub_title"];
@@ -44,7 +44,7 @@ export default function HomePage({ navigation }) {
           </Card>
         </TouchableOpacity>
       ))}
-      <Button title="Log In" onPress={showSubforums} />
+      {/* <Button title="Log In" onPress={showSubforums} /> */}
       <StatusBar style="auto" />
     </View>
   );
