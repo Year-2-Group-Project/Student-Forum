@@ -5,11 +5,12 @@ import styles from "../styles/style";
 import axios from "axios";
 
 export default function userProfile({ navigation }) {
-
   return (
     <View style={styles.container}>
-      <Button title="Create Subforum" onPress={() => navigation.navigate("CreateSubforum")} />
-      <Button title="Logout" onPress={logout} />
+      <Button
+        title="Create Subforum"
+        onPress={() => navigation.navigate("CreateSubforum")}
+      />
       <StatusBar style="auto" />
     </View>
   );

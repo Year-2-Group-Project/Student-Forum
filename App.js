@@ -8,14 +8,14 @@ import SubforumPage from "./pages/subforum";
 import createSubforumPage from "./pages/createSubforum";
 import ThreadPage from "./pages/thread";
 import userProfile from "./pages/userProfile";
-import { TextInput, View, Button } from "react-native";
+import createPostPage from "./pages/createPost";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="userProfile">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Login"
           component={LoginPage}
@@ -70,6 +70,14 @@ export default function App() {
           options={{
             headerTitleStyle: { alignSelf: "center" },
             title: "userProfile",
+          }}
+        />
+        <Stack.Screen
+          name="createPost"
+          component={createPostPage}
+          options={{
+            headerTitleStyle: { alignSelf: "center" },
+            title: "Create a Post",
           }}
         />
       </Stack.Navigator>

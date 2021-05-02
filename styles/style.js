@@ -1,7 +1,5 @@
 "use strict";
 import { StyleSheet } from "react-native";
-import { Dimensions } from "react-native";
-const { width, height } = Dimensions.get("screen");
 
 export default StyleSheet.create({
   container: {
@@ -21,6 +19,10 @@ export default StyleSheet.create({
   },
   card: {
     width: "40%",
+  },
+  cardHeader: {
+    fontSize: 13,
+    color: "grey",
   },
   cardPosition: {
     alignItems: "center",
