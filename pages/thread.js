@@ -15,7 +15,7 @@ export default function ThreadPage({ navigation }) {
   const [comments, setComments] = useState([]);
 
   axios
-    .post("https://group-project-sql.herokuapp.com/getThreadPost", {
+    .post("http://localhost:19007/getThreadPost", {
       subforumID: subforumID,
       headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
     })

@@ -5,6 +5,8 @@ import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 
+var userID;
+
 export default function LoginPage({ navigation }) {
   var [username, setUsername] = useState("");
   var [password, setPassword] = useState("");
@@ -37,7 +39,19 @@ export default function LoginPage({ navigation }) {
     });
   }, []);
 
-  console.log("yo: " + cookieUsername);
+  // set user id
+  axios
+    .post("http://localhost:19007/getUserID", {
+      cookieUsername: cookieUsername,
+    })
+    .then((res) => {
+      if (cookieUsername) {
+        userID = res.data[0]["Student_ID"];
+        console.log("USER ID: " + res.data[0]["Student_ID"]);
+      }
+    });
+
+  // console.log("yo: " + cookieUsername);
 
   return (
     <View style={styles.container}>
@@ -59,3 +73,6 @@ export default function LoginPage({ navigation }) {
     </View>
   );
 }
+
+export { userID };
+console.log("user id: " + userID);

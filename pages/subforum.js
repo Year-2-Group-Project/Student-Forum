@@ -4,34 +4,41 @@ import { Text, View, TouchableOpacity } from "react-native";
 import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
-import { Card, Icon, Button } from "react-native-elements";
+import { Card, Button } from "react-native-elements";
 import { subforumID } from "./home";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
-import { Dimensions } from "react-native";
-
-const { width, height } = Dimensions.get("window");
 
 export default function SubforumPage({ navigation }) {
   const [posts, setPosts] = useState([]);
+  const [cookieUsername, setCookieUsername] = useState("");
 
-  // axios
-  //   .post("https://group-project-sql.herokuapp.com/posts", {
-  //     subforumID: subforumID,
-  //     headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
-  //   })
-  //   .then((res) => {
-  //     // res.data should be all posts from specific subforum
-  //     setPosts(res.data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  React.useEffect(() => {
+    axios.get("http://localhost:19007/login").then((res) => {
+      setCookieUsername(res.data["user"]);
+    });
+  }, []);
+
+  axios
+    .post("http://localhost:19007/posts", {
+      subforumID: subforumID,
+      headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+    })
+    .then((res) => {
+      // res.data should be all posts from specific subforum
+      setPosts(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
   const commentOnPress = () => {
     navigation.navigate("Thread");
   };
-  var userID = 1;
+
+  const createPost = () => {
+    navigation.navigate("createPost");
+  };
 
   const join = () => {
     console.log(subforumID);
@@ -52,44 +59,53 @@ export default function SubforumPage({ navigation }) {
 
   return (
     <View style={styles.cardContainer}>
+      <Button title="Create Post" onPress={createPost} />
       <View style={{ flexDirection: "row" }}>
         <Button title="Join" onPress={join} />
       </View>
       <View style={styles.cardPosition}>
         <View style={styles.card}>
-          <Card>
-            <Text style={{ fontSize: 13, color: "grey", fontWeight: "500" }}>
-              Subforum Title
-            </Text>
-            <View style={{ flexDirection: "row" }}>
-              <Text style={{ fontSize: 13, color: "grey" }}>Username •</Text>
-              <Text style={{ fontSize: 13, color: "grey" }}>
-                {" "}
-                Time Uploaded
+          {posts.map((post) => (
+            <Card>
+              <Text style={(styles.cardHeader, { fontWeight: "500" })}>
+                Subforum Title
               </Text>
-            </View>
-            <Card.Divider></Card.Divider>
-            <Text style={{ fontSize: 20, fontWeight: "600" }}>Post Title</Text>
-            <Text style={{ fontSize: 13 }}>Post Content</Text>
-            <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity style={styles.button} onPress={commentOnPress}>
-                <Text>
-                  <MaterialCommunityIcons
-                    name="comment-text-outline"
-                    size={15}
-                    color="black"
-                  />{" "}
-                  Comments
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button} onPress={commentOnPress}>
-                <Text>
-                  {" "}
-                  <Ionicons name="flag-sharp" size={15} color="black" /> Report
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </Card>
+              <View style={{ flexDirection: "row" }}>
+                <Text style={styles.cardHeader}>Username •</Text>
+                <Text style={styles.cardHeader}>{post["Post_date"]}</Text>
+              </View>
+              <Card.Divider></Card.Divider>
+              <Text style={{ fontSize: 20, fontWeight: "600" }}>
+                {post["Post_title"]}
+              </Text>
+              <Text style={{ fontSize: 13 }}>{post["Post_content"]}</Text>
+              <View style={{ flexDirection: "row" }}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={commentOnPress}
+                >
+                  <Text>
+                    <MaterialCommunityIcons
+                      name="comment-text-outline"
+                      size={15}
+                      color="black"
+                    />{" "}
+                    Comments
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={commentOnPress}
+                >
+                  <Text>
+                    {" "}
+                    <Ionicons name="flag-sharp" size={15} color="black" />{" "}
+                    Report
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </Card>
+          ))}
           <StatusBar style="auto" />
         </View>
       </View>
