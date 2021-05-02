@@ -12,7 +12,7 @@ export default function createPostPage() {
   const [content, setContent] = useState("");
 
   const createPost = () => {
-    const currentDateTime = new Date(year, month, day, hours, minutes, seconds);
+    const currentDateTime = require("moment")().format("YYYY-MM-DD HH:mm:ss");
     axios
       .post("http://localhost:19007/post/create", {
         title: title,
