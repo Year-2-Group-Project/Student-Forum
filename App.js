@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="CreateSubforum">
+      <Stack.Navigator initialRouteName="userProfile">
         <Stack.Screen
           name="Login"
           component={LoginPage}
