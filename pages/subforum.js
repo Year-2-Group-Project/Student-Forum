@@ -8,6 +8,7 @@ import { Card, Button } from "react-native-elements";
 import { subforumID } from "./home";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { userID } from "./login";
 
 export default function SubforumPage({ navigation }) {
   const [posts, setPosts] = useState([]);
@@ -41,8 +42,8 @@ export default function SubforumPage({ navigation }) {
   };
 
   const join = () => {
-    console.log(subforumID);
-    console.log(userID);
+    // console.log(subforumID);
+    // console.log(userID);
     axios
       .post("http://localhost:19007/join", {
         userID: userID,
