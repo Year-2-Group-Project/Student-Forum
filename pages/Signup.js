@@ -10,8 +10,6 @@ function preg_match (regex, str) {
   return (new RegExp(regex).test(str));
 }
 
-// Users
-
 export default function SignupPage({ navigation }) {
   const [status, setStatus] = useState("");
   const [firstname, setFirstname] = useState("");
