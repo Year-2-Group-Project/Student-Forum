@@ -90,7 +90,6 @@ export default function SubforumPage({ navigation }) {
       });
   }
   
-var x = 1
 
   return (
     <View style={styles.cardContainer}>
@@ -99,7 +98,6 @@ var x = 1
         { isPresident == true ? <Button title="Hello" /> : <Text>Hello world</Text>}
         <Button title="Join" onPress={join} />
         <Button title="role" onPress={getrole} />
-        <Button title="Join" onPress={() => join} />
       </View>
       <View style={styles.cardPosition}>
         <View style={styles.card}>
