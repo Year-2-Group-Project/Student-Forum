@@ -5,6 +5,7 @@ import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
 import { Card } from "react-native-elements";
+import { userID } from "./login";
 
 var subforumID;
 var subforumTitle;
@@ -26,6 +27,7 @@ export default function HomePage({ navigation }) {
   function subOnPress(sub) {
     subforumTitle = sub["Sub_title"];
     subforumID = sub["Sub_ID"];
+    console.log(userID)
     console.log(subforumID);
     console.log(subforumTitle);
     navigation.navigate("Subforum");
