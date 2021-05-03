@@ -14,7 +14,7 @@ export default function createPostPage() {
   const createPost = () => {
     const currentDateTime = require("moment")().format("YYYY-MM-DD HH:mm:ss");
     axios
-      .post("http://localhost:19007/post/create", {
+      .post("https://group-project-sql.herokuapp.com/post/create", {
         title: title,
         content: content,
         currentDateTime: currentDateTime,

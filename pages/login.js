@@ -17,7 +17,7 @@ export default function LoginPage({ navigation }) {
 
   const authenticate = () => {
     axios
-      .post("http://localhost:19007/login", {
+      .post("https://group-project-sql.herokuapp.com/login", {
         username: username,
         password: password,
       })
@@ -34,7 +34,7 @@ export default function LoginPage({ navigation }) {
     console.log(loginStatus);
     // set user id
     axios
-      .post("http://localhost:19007/getUserID", {
+      .post("https://group-project-sql.herokuapp.com/getUserID", {
         cookieUsername: cookieUsername,
       })
       .then((res) => {
@@ -45,9 +45,19 @@ export default function LoginPage({ navigation }) {
       });
   };
 
+  // React.useEffect(() => {
+  //   axios.get("http://localhost:19007/login").then((res) => {
+  //     setCookieUsername(res.data["user"]);
+  //   });
+  // }, []);
+
   React.useEffect(() => {
-    axios.get("http://localhost:19007/login").then((res) => {
+    axios.get("https://group-project-sql.herokuapp.com/login").then((res) => {
       setCookieUsername(res.data["user"]);
+      if (res.data["loggedIn"] == true) {
+        navigation.navigate("Home");
+        console.log(res.data["user"]);
+      }
     });
   }, []);
 

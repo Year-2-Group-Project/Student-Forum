@@ -15,9 +15,10 @@ export default function ThreadPage({ navigation }) {
   const [comments, setComments] = useState([]);
   const [cookieUsername, setCookieUsername] = useState("");
   const [commentInput, setCommentInput] = useState("");
+  const [username, setUsername] = useState("");
 
   React.useEffect(() => {
-    axios.get("http://localhost:19007/login").then((res) => {
+    axios.get("https://group-project-sql.herokuapp.com/login").then((res) => {
       setCookieUsername(res.data["user"]);
     });
   }, []);
@@ -25,7 +26,7 @@ export default function ThreadPage({ navigation }) {
 
   React.useEffect(() => {
     axios
-      .post("http://localhost:19007/getComments", {
+      .post("https://group-project-sql.herokuapp.com/getComments", {
         postID: postID,
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
@@ -42,7 +43,7 @@ export default function ThreadPage({ navigation }) {
   const commentOnPress = () => {
     const currentDateTime = require("moment")().format("YYYY-MM-DD HH:mm:ss");
     axios
-      .post("http://localhost:19007/comments/add", {
+      .post("https://group-project-sql.herokuapp.com/comments/add", {
         commentInput: commentInput,
         currentDateTime: currentDateTime,
         userID: userID,
@@ -56,6 +57,22 @@ export default function ThreadPage({ navigation }) {
         console.log(err);
       });
   };
+
+  // sets username from comment
+  function getUsername(id) {
+    axios
+      .post("https://group-project-sql.herokuapp.com/comments/username", {
+        id: id,
+        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+      })
+      .then((res) => {
+        console.log("GET USERNAME: " + res.data[0]["Username"]);
+        setUsername(res.data[0]["Username"]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <View style={styles.cardContainer}>
@@ -111,7 +128,7 @@ export default function ThreadPage({ navigation }) {
             <Card>
               <View style={{ flexDirection: "row" }}>
                 <Text style={{ fontSize: 13, color: "grey" }}>
-                  {comment["Student_ID"]} •
+                  {(getUsername(comment["Student_ID"]), username)} •
                 </Text>
                 <Text style={{ fontSize: 13, color: "grey" }}>
                   {" " + comment["Comment_date"]}
