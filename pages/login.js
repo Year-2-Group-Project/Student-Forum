@@ -28,7 +28,7 @@ export default function LoginPage({ navigation }) {
           // Logged in as loginStatus
           setLoginStatus(res.data[0].Username);
           setCookieUsername(res.data[0].Username);
-          // test
+          navigation.navigate("Home");
         }
       });
     console.log(loginStatus);
