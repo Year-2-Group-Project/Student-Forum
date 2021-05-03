@@ -4,6 +4,9 @@ import { Text, TextInput, View, Button, CheckBox } from "react-native";
 import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
+import { userID } from "./login";
+
+var subforum_id;
 
 export default function createSubforumPage() {
   const [title, setTitle] = useState("");
@@ -16,6 +19,7 @@ export default function createSubforumPage() {
         title: title,
         description: description,
         isPrivate: isPrivate,
+        userID: userID,
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
       .then(() => {
@@ -24,7 +28,38 @@ export default function createSubforumPage() {
       .catch((err) => {
         console.log(err);
       });
+    axios
+      .post("http://localhost:19007/subforum/getsubID", {
+        title: title,
+        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+      })
+      .then((res) => {
+        subforum_id = res.data[0]["Sub_ID"];
+        console.log("Sub ID: " + res.data[0]["Sub_ID"]);
+        president();
+      })
+      .catch((err) => {
+        console.log(err);
+      });   
   };
+  
+
+  const president = () => {
+    axios
+    .post("http://localhost:19007/subforum/subPresident", {
+      subforum_id: subforum_id,
+      userID: userID,
+      headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+    })
+    .then((res) => {
+      console.log("Succesfully completed.");
+      console.log(subforum_id);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
 
   return (
     <View style={styles.container}>

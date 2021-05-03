@@ -46,6 +46,10 @@ export default function HomePage({ navigation }) {
       ))}
       {/* <Button title="Log In" onPress={showSubforums} /> */}
       <StatusBar style="auto" />
+      <Button
+        title="UserProfile"
+        onPress={() => navigation.navigate("userProfile")}
+      />
     </View>
   );
 }
