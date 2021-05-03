@@ -16,6 +16,8 @@ let postTitle;
 let postContent;
 let postDate;
 
+var isPresident = false;
+
 export default function SubforumPage({ navigation }) {
   const [posts, setPosts] = useState([]);
   const [cookieUsername, setCookieUsername] = useState("");
@@ -58,18 +60,45 @@ export default function SubforumPage({ navigation }) {
         subforumID: subforumID,
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
-      .then(() => {
+      .then((res) => {
+
         console.log("Submit post successful");
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  
+  
+  
+  const getrole = () => {
+    axios
+      .post("http://localhost:19007/getRole", {
+        userID: userID,
+        subforumID: subforumID,
+        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+      })
+      .then((res) => {
+        if (res.data[0]["Role"] == "President"){
+          isPresident == true
+          console.log("is true")
+        }
+        console.log("Role: " + res.data[0]["Role"]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  
+var x = 1
 
   return (
     <View style={styles.cardContainer}>
       <Button title="Create Post" onPress={() => createPost} />
       <View style={{ flexDirection: "row" }}>
+        { isPresident == true ? <Button title="Hello" /> : <Text>Hello world</Text>}
+        <Button title="Join" onPress={join} />
+        <Button title="role" onPress={getrole} />
         <Button title="Join" onPress={() => join} />
       </View>
       <View style={styles.cardPosition}>

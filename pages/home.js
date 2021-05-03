@@ -43,6 +43,10 @@ export default function HomePage({ navigation }) {
         </TouchableOpacity>
       ))}
       <StatusBar style="auto" />
+      <Button
+        title="UserProfile"
+        onPress={() => navigation.navigate("userProfile")}
+      />
     </View>
   );
 }
