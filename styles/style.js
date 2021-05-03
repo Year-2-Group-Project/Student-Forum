@@ -36,4 +36,8 @@ export default StyleSheet.create({
     textAlign: "center",
     width: "50%",
   },
+  statusText: {
+    fontWeight: 'bold',
+    color: 'red'
+  },
 });
