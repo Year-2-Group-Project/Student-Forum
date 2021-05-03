@@ -31,6 +31,18 @@ export default function LoginPage({ navigation }) {
           navigation.navigate("Home");
         }
       });
+    console.log(loginStatus);
+    // set user id
+    axios
+      .post("http://localhost:19007/getUserID", {
+        cookieUsername: cookieUsername,
+      })
+      .then((res) => {
+        if (cookieUsername) {
+          userID = res.data[0]["Student_ID"];
+          console.log("USER ID: " + res.data[0]["Student_ID"]);
+        }
+      });
   };
 
   React.useEffect(() => {
@@ -38,20 +50,6 @@ export default function LoginPage({ navigation }) {
       setCookieUsername(res.data["user"]);
     });
   }, []);
-
-  // set user id
-  axios
-    .post("http://localhost:19007/getUserID", {
-      cookieUsername: cookieUsername,
-    })
-    .then((res) => {
-      if (cookieUsername) {
-        userID = res.data[0]["Student_ID"];
-        console.log("USER ID: " + res.data[0]["Student_ID"]);
-      }
-    });
-
-  // console.log("yo: " + cookieUsername);
 
   return (
     <View style={styles.container}>
