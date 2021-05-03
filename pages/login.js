@@ -13,12 +13,6 @@ export default function LoginPage({ navigation }) {
   const [loginStatus, setLoginStatus] = useState("");
   const [cookieUsername, setCookieUsername] = useState("");
 
-  React.useEffect(() => {
-    axios.get("http://localhost:19007/login").then((res) => {
-      setCookieUsername(res.data["user"]);
-    });
-  }, []);
-
   axios.defaults.withCredentials = true;
 
   const authenticate = () => {
@@ -33,6 +27,7 @@ export default function LoginPage({ navigation }) {
         } else {
           // Logged in as loginStatus
           setLoginStatus(res.data[0].Username);
+          setCookieUsername(res.data[0].Username);
           navigation.navigate("Home");
         }
       });
@@ -52,10 +47,7 @@ export default function LoginPage({ navigation }) {
 
   React.useEffect(() => {
     axios.get("http://localhost:19007/login").then((res) => {
-      if (res.data["loggedIn"] == true) {
-        navigation.navigate("Home");
-        console.log(res.data["user"]);
-      }
+      setCookieUsername(res.data["user"]);
     });
   }, []);
 

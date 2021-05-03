@@ -23,19 +23,21 @@ export default function ThreadPage({ navigation }) {
   }, []);
   console.log("POST ID: " + postID);
 
-  axios
-    .post("http://localhost:19007/getComments", {
-      postID: postID,
-      headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
-    })
-    .then((res) => {
-      // res.data should be all posts from specific subforum
-      setComments(res.data);
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  React.useEffect(() => {
+    axios
+      .post("http://localhost:19007/getComments", {
+        postID: postID,
+        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+      })
+      .then((res) => {
+        // res.data should be all posts from specific subforum
+        setComments(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const commentOnPress = () => {
     const currentDateTime = require("moment")().format("YYYY-MM-DD HH:mm:ss");
@@ -48,7 +50,7 @@ export default function ThreadPage({ navigation }) {
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log("Comment successfully inputted");
       })
       .catch((err) => {
         console.log(err);
@@ -91,14 +93,18 @@ export default function ThreadPage({ navigation }) {
           </Card>
 
           {/* input for comments */}
-          <View style={styles.container}>
-            <TextInput
-              style={styles.input}
-              placeholder="Text"
-              onChangeText={(text) => setCommentInput(text)}
-            />
-            <Button title="Comment" onPress={() => commentOnPress} />
-          </View>
+          <Card>
+            <View style={styles.cardContainer}>
+              <TextInput
+                style={styles.commentInput}
+                multiline={true}
+                numberOfLines={7}
+                placeholder="Text"
+                onChangeText={(text) => setCommentInput(text)}
+              />
+              <Button title="Comment" onPress={commentOnPress} />
+            </View>
+          </Card>
 
           {/* show all comments for this post*/}
           {comments.map((comment) => (

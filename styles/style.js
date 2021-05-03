@@ -49,4 +49,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
     color: "red",
   },
+  commentInput: {
+    backgroundColor: "#F5F5F5",
+  },
 });
