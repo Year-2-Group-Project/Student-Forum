@@ -168,7 +168,7 @@ export default function SignupPage({ navigation }) {
         })
         .then(() => {
           console.log("Sign up successful");
-          navigation.navigate("Home");
+          navigation.navigate("Login");
         })
         .catch((err) => {
           console.log(err);
