@@ -15,7 +15,7 @@ export default function createSubforumPage() {
 
   const executeCreate = () => {
     axios
-      .post("http://localhost:19007/subforum/create", {
+      .post("https://group-project-sql.herokuapp.com/subforum/create", {
         title: title,
         description: description,
         isPrivate: isPrivate,
@@ -29,7 +29,7 @@ export default function createSubforumPage() {
         console.log(err);
       });
     axios
-      .post("http://localhost:19007/subforum/getsubID", {
+      .post("https://group-project-sql.herokuapp.com/subforum/getsubID", {
         title: title,
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
@@ -40,26 +40,24 @@ export default function createSubforumPage() {
       })
       .catch((err) => {
         console.log(err);
-      });   
+      });
   };
-  
 
   const president = () => {
     axios
-    .post("http://localhost:19007/subforum/subPresident", {
-      subforum_id: subforum_id,
-      userID: userID,
-      headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
-    })
-    .then((res) => {
-      console.log("Succesfully completed.");
-      console.log(subforum_id);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-
+      .post("https://group-project-sql.herokuapp.com/subforum/subPresident", {
+        subforum_id: subforum_id,
+        userID: userID,
+        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+      })
+      .then((res) => {
+        console.log("Succesfully completed.");
+        console.log(subforum_id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <View style={styles.container}>

@@ -23,13 +23,13 @@ export default function SubforumPage({ navigation }) {
   const [cookieUsername, setCookieUsername] = useState("");
 
   React.useEffect(() => {
-    axios.get("http://localhost:19007/login").then((res) => {
+    axios.get("https://group-project-sql.herokuapp.com/login").then((res) => {
       setCookieUsername(res.data["user"]);
     });
   }, []);
 
   axios
-    .post("http://localhost:19007/posts", {
+    .post("https://group-project-sql.herokuapp.com/posts", {
       subforumID: subforumID,
       headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
     })
@@ -55,47 +55,47 @@ export default function SubforumPage({ navigation }) {
 
   const join = () => {
     axios
-      .post("http://localhost:19007/join", {
+      .post("https://group-project-sql.herokuapp.com/join", {
         userID: userID,
         subforumID: subforumID,
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
       .then((res) => {
-
         console.log("Submit post successful");
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  
-  
-  
+
   const getrole = () => {
     axios
-      .post("http://localhost:19007/getRole", {
+      .post("https://group-project-sql.herokuapp.com/getRole", {
         userID: userID,
         subforumID: subforumID,
         headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
       })
       .then((res) => {
-        if (res.data[0]["Role"] == "President"){
-          isPresident == true
-          console.log("is true")
+        if (res.data[0]["Role"] == "President") {
+          isPresident == true;
+          console.log("is true");
         }
         console.log("Role: " + res.data[0]["Role"]);
       })
       .catch((err) => {
         console.log(err);
       });
-  }
-  
+  };
 
   return (
     <View style={styles.cardContainer}>
       <Button title="Create Post" onPress={() => createPost} />
       <View style={{ flexDirection: "row" }}>
-        { isPresident == true ? <Button title="Hello" /> : <Text>Hello world</Text>}
+        {isPresident == true ? (
+          <Button title="Hello" />
+        ) : (
+          <Text>Hello world</Text>
+        )}
         <Button title="Join" onPress={join} />
         <Button title="role" onPress={getrole} />
       </View>
