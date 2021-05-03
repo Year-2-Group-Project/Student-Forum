@@ -36,7 +36,6 @@ export default StyleSheet.create({
     textAlign: "center",
     width: "50%",
   },
-<<<<<<< HEAD
   threadButton: {
     alignItems: "center",
     alignContent: "center",
@@ -45,10 +44,9 @@ export default StyleSheet.create({
     marginTop: 5,
     textAlign: "center",
     width: "100%",
-=======
+  },
   statusText: {
-    fontWeight: 'bold',
-    color: 'red'
->>>>>>> b3c6721633efeb8551616824bd0e238f4813936a
+    fontWeight: "bold",
+    color: "red",
   },
 });
