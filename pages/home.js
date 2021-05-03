@@ -12,7 +12,6 @@ var subforumTitle;
 export default function HomePage({ navigation }) {
   const [subforums, setSubforums] = useState([]);
 
-  // const showSubforums = () => {
   axios
     .get("http://localhost:19007/subforums", {
       headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
@@ -23,7 +22,6 @@ export default function HomePage({ navigation }) {
     .catch((err) => {
       console.log(err);
     });
-  // };
 
   function subOnPress(sub) {
     subforumTitle = sub["Sub_title"];
@@ -44,7 +42,6 @@ export default function HomePage({ navigation }) {
           </Card>
         </TouchableOpacity>
       ))}
-      {/* <Button title="Log In" onPress={showSubforums} /> */}
       <StatusBar style="auto" />
       <Button
         title="UserProfile"

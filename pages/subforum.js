@@ -9,6 +9,12 @@ import { subforumID } from "./home";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { userID } from "./login";
+import { subforumTitle } from "./home";
+
+let postID;
+let postTitle;
+let postContent;
+let postDate;
 
 var isPresident = false;
 
@@ -35,9 +41,13 @@ export default function SubforumPage({ navigation }) {
       console.log(err);
     });
 
-  const commentOnPress = () => {
+  function postOnPress(post) {
+    postID = post["Post_ID"];
+    postTitle = post["Post_title"];
+    postContent = post["Post_content"];
+    postDate = post["Post_date"];
     navigation.navigate("Thread");
-  };
+  }
 
   const createPost = () => {
     navigation.navigate("createPost");
@@ -84,54 +94,58 @@ var x = 1
 
   return (
     <View style={styles.cardContainer}>
-      <Button title="Create Post" onPress={createPost} />
+      <Button title="Create Post" onPress={() => createPost} />
       <View style={{ flexDirection: "row" }}>
         { isPresident == true ? <Button title="Hello" /> : <Text>Hello world</Text>}
         <Button title="Join" onPress={join} />
         <Button title="role" onPress={getrole} />
+        <Button title="Join" onPress={() => join} />
       </View>
       <View style={styles.cardPosition}>
         <View style={styles.card}>
           {posts.map((post) => (
-            <Card>
-              <Text style={(styles.cardHeader, { fontWeight: "500" })}>
-                Subforum Title
-              </Text>
-              <View style={{ flexDirection: "row" }}>
-                <Text style={styles.cardHeader}>Username •</Text>
-                <Text style={styles.cardHeader}>{post["Post_date"]}</Text>
-              </View>
-              <Card.Divider></Card.Divider>
-              <Text style={{ fontSize: 20, fontWeight: "600" }}>
-                {post["Post_title"]}
-              </Text>
-              <Text style={{ fontSize: 13 }}>{post["Post_content"]}</Text>
-              <View style={{ flexDirection: "row" }}>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={commentOnPress}
-                >
-                  <Text>
-                    <MaterialCommunityIcons
-                      name="comment-text-outline"
-                      size={15}
-                      color="black"
-                    />{" "}
-                    Comments
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={commentOnPress}
-                >
-                  <Text>
-                    {" "}
-                    <Ionicons name="flag-sharp" size={15} color="black" />{" "}
-                    Report
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </Card>
+            <TouchableOpacity onPress={() => postOnPress(post)}>
+              <Card>
+                <View style={{ flexDirection: "row" }}>
+                  <Text style={styles.cardHeader}>{cookieUsername} •</Text>
+                  <Text style={styles.cardHeader}>{post["Post_date"]}</Text>
+                </View>
+                <Card.Divider></Card.Divider>
+                <Text style={{ fontSize: 20, fontWeight: "600" }}>
+                  {post["Post_title"]}
+                </Text>
+                <Text style={{ fontSize: 13 }}>{post["Post_content"]}</Text>
+                <View style={{ flexDirection: "row" }}>
+                  {/* touchable comments button */}
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => postOnPress(post)}
+                  >
+                    <Text>
+                      <MaterialCommunityIcons
+                        name="comment-text-outline"
+                        size={15}
+                        color="black"
+                      />{" "}
+                      Comments
+                    </Text>
+                  </TouchableOpacity>
+
+                  {/* touchable report button */}
+                  <TouchableOpacity style={styles.button}>
+                    <Text>
+                      {" "}
+                      <Ionicons
+                        name="flag-sharp"
+                        size={15}
+                        color="black"
+                      />{" "}
+                      Report
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </Card>
+            </TouchableOpacity>
           ))}
           <StatusBar style="auto" />
         </View>
@@ -139,3 +153,13 @@ var x = 1
     </View>
   );
 }
+
+export { postID };
+export { postTitle };
+export { postContent };
+export { postDate };
+
+console.log("post id: " + postID);
+console.log("post title: " + postTitle);
+console.log("post conten: " + postContent);
+console.log("post datr: " + postDate);

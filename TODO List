@@ -6,8 +6,8 @@ Sign-up page:
 5.	Insert to Database - Base - Done
 
 Log-in page:
-1.	User Interface - Base
-2.	Validation for email and password - Base (pregmatch)
+1.	User Interface - Base - Done
+2.	Validation for email and password - Base (pregmatch) - Done
 
 Home page:
 1.	User Interface (Displaying posts) - Base
@@ -32,7 +32,7 @@ Comments:
 User Profile Section:
 1.	Create, Delete subforums - Base
 2.	Logout from account
-3.	View posts and comments - Base
+3.	View posts and comments - Base - Done
 4.	Option to delete account
 
 Roles:
