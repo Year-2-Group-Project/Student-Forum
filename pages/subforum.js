@@ -129,8 +129,3 @@ export { postID };
 export { postTitle };
 export { postContent };
 export { postDate };
-
-console.log("post id: " + postID);
-console.log("post title: " + postTitle);
-console.log("post conten: " + postContent);
-console.log("post datr: " + postDate);

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StatusBar } from "expo-status-bar";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, TextInput } from "react-native";
 import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
@@ -14,6 +14,7 @@ import { userID } from "./login";
 export default function ThreadPage({ navigation }) {
   const [comments, setComments] = useState([]);
   const [cookieUsername, setCookieUsername] = useState("");
+  const [commentInput, setCommentInput] = useState("");
 
   React.useEffect(() => {
     axios.get("http://localhost:19007/login").then((res) => {
@@ -21,7 +22,7 @@ export default function ThreadPage({ navigation }) {
     });
   }, []);
   console.log("POST ID: " + postID);
-  // function getComments() {
+
   axios
     .post("http://localhost:19007/getComments", {
       postID: postID,
@@ -35,7 +36,24 @@ export default function ThreadPage({ navigation }) {
     .catch((err) => {
       console.log(err);
     });
-  // }
+
+  const commentOnPress = () => {
+    const currentDateTime = require("moment")().format("YYYY-MM-DD HH:mm:ss");
+    axios
+      .post("http://localhost:19007/comments/add", {
+        commentInput: commentInput,
+        currentDateTime: currentDateTime,
+        userID: userID,
+        postID: postID,
+        headers: { Pragma: "no-cache", "Cache-Control": "no-cache" },
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <View style={styles.cardContainer}>
@@ -71,6 +89,16 @@ export default function ThreadPage({ navigation }) {
               </TouchableOpacity>
             </View>
           </Card>
+
+          {/* input for comments */}
+          <View style={styles.container}>
+            <TextInput
+              style={styles.input}
+              placeholder="Text"
+              onChangeText={(text) => setCommentInput(text)}
+            />
+            <Button title="Comment" onPress={() => commentOnPress} />
+          </View>
 
           {/* show all comments for this post*/}
           {comments.map((comment) => (
