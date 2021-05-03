@@ -74,9 +74,18 @@ export default function LoginPage({ navigation }) {
         secureTextEntry={true}
         onChangeText={(text) => setPassword(text)}
       />
+      <View style={{ flexDirection: "row" }}>
+        <View style={styles.buttonStyle}>
+          <Button title="Log In" onPress={authenticate} />
+        </View>
+        <View style={styles.buttonStyle}>
+          <Button
+            title="Signup"
+            onPress={() => navigation.navigate("Signup")}
+          />
+        </View>
+      </View>
 
-      <Button title="Log In" onPress={authenticate} />
-      <Button title="Signup" onPress={() => navigation.navigate("Signup")} />
       <StatusBar style="auto" />
     </View>
   );

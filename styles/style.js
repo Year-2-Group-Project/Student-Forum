@@ -18,7 +18,7 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   card: {
-    width: "40%",
+    // width: "60%",
   },
   cardHeader: {
     fontSize: 13,
@@ -51,5 +51,22 @@ export default StyleSheet.create({
   },
   commentInput: {
     backgroundColor: "#F5F5F5",
+  },
+  homeButton: {
+    // flex: 1,
+    // justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#2089DC",
+    // paddingTop: 15,
+    textAlign: "center",
+    // width: "10%",
+    // height: "3%",
+    // position: "absolute",
+    // top: 10,
+    // right: 10,
+  },
+  buttonStyle: {
+    marginHorizontal: 5,
+    marginTop: 5,
   },
 });

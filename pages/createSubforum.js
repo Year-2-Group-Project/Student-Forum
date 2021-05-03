@@ -8,7 +8,7 @@ import { userID } from "./login";
 
 var subforum_id;
 
-export default function createSubforumPage() {
+export default function createSubforumPage({ navigation }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [isPrivate, setSelection] = useState(false);
@@ -41,6 +41,8 @@ export default function createSubforumPage() {
       .catch((err) => {
         console.log(err);
       });
+
+    navigation.navigate("Home");
   };
 
   const president = () => {

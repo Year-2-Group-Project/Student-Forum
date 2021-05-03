@@ -88,9 +88,11 @@ export default function SubforumPage({ navigation }) {
   };
 
   return (
-    <View style={styles.cardContainer}>
-      <Button title="Create Post" onPress={() => createPost} />
-      <View style={{ flexDirection: "row" }}>
+    <View style={styles.container}>
+      <View style={{ paddingTop: 10 }}>
+        <Button title="Create Post" onPress={createPost} />
+      </View>
+      {/* <View style={{ flexDirection: "row" }}>
         {isPresident == true ? (
           <Button title="Hello" />
         ) : (
@@ -98,7 +100,8 @@ export default function SubforumPage({ navigation }) {
         )}
         <Button title="Join" onPress={join} />
         <Button title="role" onPress={getrole} />
-      </View>
+      </View> */}
+      {/* <Button title="Join" onPress={join} /> */}
       <View style={styles.cardPosition}>
         <View style={styles.card}>
           {posts.map((post) => (

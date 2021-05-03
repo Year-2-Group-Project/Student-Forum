@@ -1,10 +1,10 @@
 import * as React from "react";
 import { StatusBar } from "expo-status-bar";
-import { View, Button, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import styles from "../styles/style";
 import axios from "axios";
 import { useState } from "react";
-import { Card } from "react-native-elements";
+import { Card, Button } from "react-native-elements";
 
 var subforumID;
 var subforumTitle;
@@ -33,20 +33,24 @@ export default function HomePage({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {subforums.map((subforum) => (
-        <TouchableOpacity onPress={() => subOnPress(subforum)}>
-          <Card>
-            <Card.Title>{subforum["Sub_title"]}</Card.Title>
-            <Card.Divider />
-            <Card.Title>{subforum["Sub_description"]}</Card.Title>
-          </Card>
-        </TouchableOpacity>
-      ))}
-      <StatusBar style="auto" />
-      <Button
-        title="UserProfile"
-        onPress={() => navigation.navigate("userProfile")}
-      />
+      <View style={{ paddingTop: 10 }}>
+        <Button
+          title="Create Subforum"
+          onPress={() => navigation.navigate("CreateSubforum")}
+        />
+      </View>
+      <View style={styles.card}>
+        {subforums.map((subforum) => (
+          <TouchableOpacity onPress={() => subOnPress(subforum)}>
+            <Card>
+              <Card.Title>{subforum["Sub_title"]}</Card.Title>
+              <Card.Divider />
+              <Card.Title>{subforum["Sub_description"]}</Card.Title>
+            </Card>
+          </TouchableOpacity>
+        ))}
+      </View>
+      <StatusBar style="auto" Title="hello " />
     </View>
   );
 }
